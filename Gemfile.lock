@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/PRX/feedzirra-podcast.git
-  revision: ba18e91888c4e23be117a77fd9e0b28618259b11
-  specs:
-    feedzirra-podcast (0.0.9)
-      feedzirra
-      periodic (~> 1.2.2)
-
-GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 461121444e24cdf78357418bfca9f2b8a9a1c518
   specs:
@@ -28,6 +20,15 @@ GIT
   specs:
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+
+GIT
+  remote: git://github.com/pauldix/feedzirra.git
+  revision: 9571a988f5c37e8481deacb0b19ae9e7e0c4f948
+  specs:
+    feedzirra (0.5.0)
+      curb (~> 0.8.1)
+      loofah (~> 1.2.1)
+      sax-machine (~> 0.2.1)
 
 GIT
   remote: git://github.com/wbzyl/less-rails-fontawesome.git
@@ -124,10 +125,6 @@ GEM
       activesupport (>= 3.0)
       faraday (~> 0.8)
       multi_json (~> 1.3)
-    feedzirra (0.5.0)
-      curb (~> 0.8.1)
-      loofah (~> 1.2.1)
-      sax-machine (~> 0.2.1)
     ffi (1.9.3)
     formatador (0.2.4)
     guard (2.2.4)
@@ -210,7 +207,6 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.5.0)
-    periodic (1.2.2)
     polyglot (0.3.3)
     pry (0.9.12.4)
       coderay (~> 1.0)
@@ -356,7 +352,7 @@ DEPENDENCIES
   faraday
   faraday-http-cache
   faraday_middleware!
-  feedzirra-podcast!
+  feedzirra!
   guard
   guard-rspec
   haml-rails

@@ -44,6 +44,7 @@ gem "thin"
 
 gem "quiet_assets"
 
+#gem "home_run"
 gem "haml-rails"
 gem 'faraday-http-cache'
 gem 'sidekiq'
@@ -52,7 +53,7 @@ gem 'slim'
 gem "rmagick"
 gem "carrierwave"
 gem "waveform",          github: "benalavi/waveform"
-gem "feedzirra-podcast", github: "PRX/feedzirra-podcast"
+gem "feedzirra",         github: "pauldix/feedzirra"
 gem 'em-http-request'
 gem "faraday"
 gem 'rack-fiber_pool', :require => 'rack/fiber_pool'

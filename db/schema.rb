@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213115532) do
+ActiveRecord::Schema.define(version: 20131217102610) do
+
+  create_table "channels", force: true do |t|
+    t.string   "title",       null: false
+    t.string   "slug",        null: false
+    t.string   "poster"
+    t.datetime "last_update"
+    t.string   "website",     null: false
+    t.string   "author"
+    t.string   "source_url",  null: false
+    t.string   "hash",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "channels", ["hash"], name: "index_channels_on_hash", unique: true, using: :btree
+  add_index "channels", ["slug"], name: "index_channels_on_slug", unique: true, using: :btree
+  add_index "channels", ["source_url"], name: "index_channels_on_source_url", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
