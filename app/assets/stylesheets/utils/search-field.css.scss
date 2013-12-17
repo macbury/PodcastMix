@@ -1,0 +1,17 @@
+$search-placeholder-color: #999999;
+
+#search-view {
+  .search-field {
+    padding: 6px;
+    background: transparent;
+    border: 0px;
+    min-width: 480px;
+    outline: 0px;
+    color: #fff;
+  }
+
+  .search-icon {
+    margin-right: 10px;
+    color: $search-placeholder-color;
+  }
+}

@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require nprogress
+ *= require font-awesome/font-awesome
  *= require_tree .
  */

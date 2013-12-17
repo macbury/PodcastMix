@@ -6,6 +6,6 @@ PodcastMix::Application.routes.draw do
     mount Sidekiq::Web, at: '/sidekiq', as: :sidekiq
   end
 
-  get "/test" => "home#index", as: :test
+  resource :search, controller: "search"
   root to: "home#index"
 end
