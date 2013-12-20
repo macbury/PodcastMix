@@ -14,10 +14,9 @@ Bundler.require(:default, Rails.env)
 module PodcastMix
   class Application < Rails::Application
     config.middleware.use Rack::Pjax
-    config.middleware.use Rack::FiberPool
     config.threadsafe!
 
-    config.autoload_paths += Dir["#{config.root}/app/utils/"]
+    config.autoload_paths += Dir["#{config.root}/app/utils/", "#{config.root}/app/uploaders/", "#{config.root}/app/workers/"]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

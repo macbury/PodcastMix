@@ -1,28 +1,26 @@
-== README
+http://www.wykop.pl/ramka/920907/podcasty-jakich-sluchacie-i-lista-moich-na-dobry-poczatek/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+["http://feeds.feedburner.com:80/Ruby5", "http://www.enklawa.net:80//program90.xml", "http://feeds.5by5.tv:80/changelog", "http://www.enklawa.net:80//program79.xml", "http://www.enklawa.net:80//program84.xml", "//www.enklawa.net:80//program81.xml", "http://www.enklawa.net:80//program72.xml", "http://feeds.feedburner.com:80/tctv-TechCrunchCrunchweekAudio", "http://feeds.feedburner.com:80/themothpodcast", "http://feeds.soundcloud.com:80/users/soundcloud:users:38128127/sounds.rss", "http://feeds.feedburner.com:80/TedtalksHD"]
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- Episode.order("published_at DESC").includes(:media, :channel).each do |episode|
+  .media
+    %a.pull-left{href: "#"}
+      %img.media-object{ src: poster_channel_path(id: episode.channel.slug, size: :thumb), style: "width: 64px; height: 64px;"}/
+    .media-body
+      %h4.media-heading
+        %b= episode.channel.title
+        \-
+        - if episode.media.status != :complete
+          = image_tag "download.gif"
+          %strike= episode.title
+        - else
+          = link_to episode.title, episode.media.file.url
+          %small= Time.at(episode.media.duration).utc.strftime("%H:%M:%S")
+      %p
+        Status: 
+        %b= episode.media.status
+        
+      %article= truncate strip_tags(episode.description.strip), length: 256
+      - if episode.media.status == :complete
+        %p= image_tag episode.media.waveform.url
+    

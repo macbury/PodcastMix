@@ -1,0 +1,7 @@
+.row.channel.show
+  .col-md-3
+    = image_tag @channel.poster.url(:poster), class: "thumbnail channel-big-poster"
+  .col-md-9
+    .box-inner
+      %h2= @channel.title
+      %hr/

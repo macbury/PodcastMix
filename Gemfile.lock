@@ -15,11 +15,25 @@ GIT
       ruby-audio
 
 GIT
+  remote: git://github.com/bokmann/font-awesome-rails.git
+  revision: 24ad375ed3db511c84310085889b2cbf0f650420
+  specs:
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
+
+GIT
   remote: git://github.com/lostisland/faraday_middleware.git
   revision: 29894a35a0f5d5dff87d0eec79c2b143c094161d
   specs:
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+
+GIT
+  remote: git://github.com/norman/friendly_id.git
+  revision: 3cb2a8383ae6e2032a16f7c7cda7b59f2d5d029a
+  specs:
+    friendly_id (5.0.2)
+      activerecord (~> 4.0.0)
 
 GIT
   remote: git://github.com/pauldix/feedzirra.git
@@ -31,11 +45,20 @@ GIT
       sax-machine (~> 0.2.1)
 
 GIT
-  remote: git://github.com/wbzyl/less-rails-fontawesome.git
-  revision: 6dc2460cd4de48c065fdc9d790f14747f450e284
+  remote: git://github.com/tobiassvn/sidetiq.git
+  revision: a9f2258042d6735662dad481ea8899c6b8e9289e
   specs:
-    less-rails-fontawesome (0.8.0)
-      less-rails (~> 2.4.2)
+    sidetiq (0.5.0)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.11.0)
+      sidekiq (>= 2.16.0)
+
+GIT
+  remote: git://github.com/utgarda/sidekiq-status.git
+  revision: 2db892b6836385051e52918c03e3ddf2222a0953
+  specs:
+    sidekiq-status (0.3.2)
+      sidekiq (~> 2.7)
 
 GEM
   remote: https://rubygems.org/
@@ -86,7 +109,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    commonjs (0.2.7)
     connection_pool (1.2.0)
     cookiejar (0.3.0)
     curb (0.8.5)
@@ -158,6 +180,7 @@ GEM
     http_parser.rb (0.6.0)
     httpauth (0.2.0)
     i18n (0.6.9)
+    ice_cube (0.11.1)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -169,12 +192,6 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    less (2.4.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.4.2)
-      actionpack (>= 3.1)
-      less (~> 2.4.0)
-    libv8 (3.16.14.3)
     listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -187,6 +204,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -255,8 +274,6 @@ GEM
     redis (3.0.6)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
-    ref (1.0.5)
-    rmagick (2.13.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -312,10 +329,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    subexec (0.2.3)
     temple (0.6.7)
-    therubyracer (0.12.0)
-      libv8 (~> 3.16.14.0)
-      ref
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -353,6 +368,8 @@ DEPENDENCIES
   faraday-http-cache
   faraday_middleware!
   feedzirra!
+  font-awesome-rails!
+  friendly_id!
   guard
   guard-rspec
   haml-rails
@@ -360,8 +377,8 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   js-routes
-  less-rails
-  less-rails-fontawesome!
+  mime-types
+  mini_magick
   mysql2
   omniauth
   omniauth-oauth2
@@ -375,15 +392,15 @@ DEPENDENCIES
   rails-assets-marionette
   rails-assets-nprogress
   rails-assets-underscore
-  rmagick
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
   sidekiq
+  sidekiq-status!
+  sidetiq!
   simple_form
   sinatra
   slim
-  therubyracer
   thin
   uglifier (>= 1.3.0)
   waveform!

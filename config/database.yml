@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   database: podcast_mix_development
-  pool: 5
+  pool: 100
   username: root
   password: new_password_here
   host: localhost
@@ -33,7 +33,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: podcast_mix_production
-  pool: 5
+  pool: 100
   username: root
   password:
   host: localhost

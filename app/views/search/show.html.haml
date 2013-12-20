@@ -1,0 +1,24 @@
+.row
+  .span12
+    %h3 
+      Wyniki dla: 
+      %b #{params[:query].inspect}
+    %hr/
+.row
+  .span12
+    - @channels.each do |channel|
+      .media
+        %a.pull-left{href: "#"}
+          %img.media-object{ src: @channel.poster.url(:thumb) }/
+        .media-body
+          %h4.media-heading
+            %b= link_to channel.title, channel
+          %small
+            %b Epizodów:
+            = channel.episodes.count
+            %b Ostatnia aktualizacja:
+            = l(channel.last_update, format: :long) if channel.last_update
+          %article= strip_tags(channel.description.strip)
+
+    - if @channels.empty?
+      %p Nic nie znaleziono

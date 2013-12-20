@@ -1,11 +1,16 @@
 class FiberHttp
   attr_accessor :response
 
-  def initialize(url)
+  def initialize(url, options={ cache: true })
     @uri   = URI.parse(url)
-    cache_key = [self.class, "cached-page-response", @uri.to_s]
+    cache_key = ["html-xml-cache", @uri.to_s]
 
-    self.response = Rails.cache.read(cache_key)
+    if options[:content_type].nil?
+      options[:content_type] = /(xml|atom|rss|rdf|text\/*)/i
+    end
+
+    @options      = options
+    self.response = Rails.cache.read(cache_key) if @options[:cache]
 
     if response.nil?
       Rails.logger.info "GET: #{@uri.to_s}"
@@ -19,19 +24,27 @@ class FiberHttp
       
       fetch
 
-      Rails.cache.write cache_key, response, expires_in: 2.days
+      Rails.cache.write cache_key, response, expires_in: expire_date_by_status if @options[:cache]
     else
       Rails.logger.info "Loaded from cache: #{cache_key.inspect}"
     end
   end
 
+  def expire_date_by_status
+    if success?
+      7.days
+    else
+      15.minutes
+    end
+  end
+
   def fetch
     fiber  = Fiber.current
-    @http  = EventMachine::HttpRequest.new(@uri.to_s).get head: { user_agent: "PodcastMix" }
+    @http  = EventMachine::HttpRequest.new(@uri.to_s).get head: { user_agent: "PodcastMix" }, redirects: 10
 
     @http.headers do |headers| 
-      Rails.logger.info "CONTENT_TYPE: #{headers["CONTENT_TYPE"]}"
-      unless /(atom|rss|rdf|text\/*)/i =~ headers["CONTENT_TYPE"]
+      Rails.logger.info "Headers: #{headers.inspect}"
+      unless @options[:content_type] =~ headers["CONTENT_TYPE"]
         Rails.logger.info "Invalid content type: #{headers["CONTENT_TYPE"]}"
         self.response[:error] = "Invalid content type"
         @http.close 
@@ -39,11 +52,11 @@ class FiberHttp
     end
 
     @http.callback do
-      Rails.logger.info "Recived response"
       self.response[:uri]    = @http.last_effective_url
       self.response[:header] = @http.response_header
       self.response[:status] = @http.response_header.status
       self.response[:body]   = @http.response
+      Rails.logger.info "Recived response: #{self.response[:status]}"
       fiber.resume(@http)
     end
 
@@ -53,6 +66,13 @@ class FiberHttp
     end
 
     Fiber.yield
+  end
+
+  def binary
+    @binary                   = FilelessIO.new(self.response_text)
+    @binary.original_filename = File.basename(uri.path)
+    Rails.logger.debug "File: #{@binary.original_filename}"
+    @binary
   end
 
   def uri
@@ -80,6 +100,6 @@ class FiberHttp
   end
 
   def is_html?
-    response_document.css("html, head, body").size > 0
+    response_document.css("html, head").size > 0
   end
 end

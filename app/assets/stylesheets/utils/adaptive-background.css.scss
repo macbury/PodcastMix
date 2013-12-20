@@ -6,6 +6,13 @@ body .background-wrapper {
   transition: all 0.5s ease;
   height: 100%;
   background-color: rgb(84, 104, 103);
+
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
 }
 /* line 39, ../_scss/styles.scss */
 body .background-wrapper .inner {

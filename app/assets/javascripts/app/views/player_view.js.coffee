@@ -1,5 +1,1 @@
-class Lama.Views.PlayerView extends Backbone.Marionette.View
-  el: "#player-view"
-
-  initialize: ->
-    console.log "initialized!"
+class Application.Views.Player extends Backbone.View

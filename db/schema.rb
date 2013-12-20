@@ -11,24 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217102610) do
+ActiveRecord::Schema.define(version: 20131219104823) do
 
   create_table "channels", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "slug",        null: false
+    t.string   "title",             null: false
+    t.string   "slug",              null: false
+    t.text     "description"
     t.string   "poster"
     t.datetime "last_update"
-    t.string   "website",     null: false
+    t.string   "website",           null: false
     t.string   "author"
-    t.string   "source_url",  null: false
-    t.string   "hash",        null: false
+    t.string   "source_url",        null: false
+    t.string   "hash_uid",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "poster_source_url"
   end
 
-  add_index "channels", ["hash"], name: "index_channels_on_hash", unique: true, using: :btree
+  add_index "channels", ["hash_uid"], name: "index_channels_on_hash_uid", unique: true, using: :btree
   add_index "channels", ["slug"], name: "index_channels_on_slug", unique: true, using: :btree
   add_index "channels", ["source_url"], name: "index_channels_on_source_url", unique: true, using: :btree
+
+  create_table "episodes", force: true do |t|
+    t.integer  "channel_id",   null: false
+    t.string   "title",        null: false
+    t.text     "description",  null: false
+    t.datetime "published_at", null: false
+    t.string   "link",         null: false
+    t.string   "guid",         null: false
+    t.integer  "media_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "episodes", ["channel_id"], name: "index_episodes_on_channel_id", using: :btree
+  add_index "episodes", ["slug"], name: "index_episodes_on_slug", using: :btree
+
+  create_table "media", force: true do |t|
+    t.string   "file"
+    t.string   "waveform"
+    t.integer  "duration"
+    t.string   "mime_type"
+    t.string   "hash_sum"
+    t.integer  "size"
+    t.string   "source_url", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "job_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

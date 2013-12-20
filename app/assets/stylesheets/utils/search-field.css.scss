@@ -2,7 +2,7 @@ $search-placeholder-color: #999999;
 
 #search-view {
   .search-field {
-    padding: 6px;
+    padding: 7px;
     background: transparent;
     border: 0px;
     min-width: 480px;
@@ -10,8 +10,25 @@ $search-placeholder-color: #999999;
     color: #fff;
   }
 
-  .search-icon {
+  .fa {
     margin-right: 10px;
     color: $search-placeholder-color;
+  }
+
+  .search-icon {
+    display: inline-block;
+  }
+
+  .fa-spin {
+    display: none;
+  }
+
+  &.searching {
+    .fa-spin {
+      display: inline-block;
+    }
+    .search-icon {
+      display: none;
+    }
   }
 }

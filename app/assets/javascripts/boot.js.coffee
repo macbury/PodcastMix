@@ -2,18 +2,14 @@
 #= require_tree ./app/templates
 #= require_tree ./app/views
 
-window.Lama = {
-  App: null,
-  Views: {}
+window.Application = {
+  Context: {
+    Player: null,
+    Search: null
+  },
+  Views: {},
+  Models: {}
 }
 
-Lama.App = new Backbone.Marionette.Application(); 
-
-Lama.App.addRegions
-  player: "#player-view"
-
-Lama.App.addInitializer (options) ->
-  Backbone.history.start pushState: false
-  playerView = new Lama.Views.PlayerView()
-
-$(document).ready -> Lama.App.start()
+$(document).ready ->
+  Application.Context.Search = new Application.Views.SearchView();

@@ -3,7 +3,6 @@
 //= require jquery-pjax
 //= require underscore
 //= require backbone
-//= require marionette
 //= require hamlcoffee
 //= require nprogress
 //= require js-routes

@@ -10,17 +10,14 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'therubyracer'
-
 gem 'jquery-rails'
 
 gem 'jbuilder', '~> 1.2'
-
+#gem "therubyracer"
 gem "js-routes"
 gem 'rack-pjax'
-
-gem 'less-rails'
-gem 'less-rails-fontawesome', github: "wbzyl/less-rails-fontawesome"
+gem "mime-types"
+gem "font-awesome-rails", github: "bokmann/font-awesome-rails"
 gem 'rails-assets-backbone'
 gem 'rails-assets-underscore'
 gem 'rails-assets-marionette'
@@ -28,6 +25,9 @@ gem 'rails-assets-jquery-pjax'
 gem 'rails-assets-nprogress'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github:  'anjlab/bootstrap-rails'
 gem 'haml_coffee_assets'
+gem "sidetiq",        github: "tobiassvn/sidetiq"
+gem "sidekiq-status", github: "utgarda/sidekiq-status"
+#gem "ffmpeg-ruby",    github: "gwik/ffmpeg-ruby"
 
 group :doc do
   gem 'sdoc', require: false
@@ -50,16 +50,17 @@ gem 'faraday-http-cache'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
-gem "rmagick"
+gem "mini_magick"
 gem "carrierwave"
 gem "waveform",          github: "benalavi/waveform"
 gem "feedzirra",         github: "pauldix/feedzirra"
 gem 'em-http-request'
 gem "faraday"
-gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
+gem 'rack-fiber_pool', require: 'rack/fiber_pool'
 gem 'em-synchrony'
 gem "faraday_middleware", github: "lostisland/faraday_middleware"
 
+gem "friendly_id", github: "norman/friendly_id"
 
 group :development, :test do
   gem "pry"

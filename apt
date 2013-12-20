@@ -1,0 +1,2 @@
+sudo apt-get install libsox-fmt-mp3 sox
+apt-get install libsox-fmt-all sox libchromaprint-dev
